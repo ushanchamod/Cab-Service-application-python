@@ -47,9 +47,9 @@ class Add:
         )
 
         try:
-          vehicalNumber = str(input("Enter Vehical Number : "))
+          vehicalNumber = str(input("Enter Vehicle Number : "))
           numberOdPassangers = int(input("Enter number of passengers (3 or 4): "))
-          ac = str(input("Enter AC is avalibale or not avalible (y or n): "))
+          ac = str(input("Enter AC is avalible or not avalible (y or n): "))
           if ac.lower() == "y":
             ac = 1
           elif ac.lower() == "n":
@@ -72,7 +72,7 @@ class Add:
             self.addVehical()
         except:
           clear()
-          print("Something Wrong...!")
+          print("Query Error...!")
           self.addVehical()
   
       # Add van
@@ -87,9 +87,9 @@ class Add:
         )
 
         try:
-          vehicalNumber = str(input("Enter Vehical Number : "))
+          vehicalNumber = str(input("Enter Vehicle Number : "))
           numberOdPassangers = int(input("Enter number of passengers (6 or 8): "))
-          ac = str(input("Enter AC is avalibale or not avalible (y or n): "))
+          ac = str(input("Enter AC is avalible or not avalible (y or n): "))
           if ac.lower() == "y":
             ac = 1
           elif ac.lower() == "n":
@@ -147,7 +147,7 @@ class Add:
             self.addVehical()
         except:
           clear()
-          print("Something Wrong...!")
+          print("Query Error...!")
           self.addVehical()
       
       
@@ -182,7 +182,7 @@ class Add:
             self.addVehical()
         except:
           clear()
-          print("Something Wrong...!")
+          print("Query Error...!")
           self.addVehical()
       
       
@@ -202,7 +202,7 @@ class Add:
           vehicalSize = str(input("Enter Vehical Size [2500 and 3500 (kg)] : "))
 
           try:
-            sql = ("INSERT INTO `vehicle`(`id`, `type`, `size`, `in_job`) VALUES (%s, 'truck', %s, 0)")
+            sql = ("INSERT INTO `vehicle`(`id`, `type`, `size`, `in_job`) VALUES (%s, 'lorry', %s, 0)")
             val = (vehicalNumber, vehicalSize)
             conn.cursor.execute(sql, val)
             conn.mydb.commit()
@@ -217,7 +217,7 @@ class Add:
             self.addVehical()
         except:
           clear()
-          print("Something Wrong...!")
+          print("Query Error...!")
           self.addVehical()
      
     #  terminating point

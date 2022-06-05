@@ -43,14 +43,14 @@ class Avalible:
         data = conn.cursor.fetchall()
         conn.mydb.commit()
         clear()
-        print("\nAVALIBLE VEHICALE LIST :-")
+        print("\nAVAILABLE VEHICLE LIST :-")
         print()
 
         for vehicle in data[:]:
           print("  Vehicle Number       : ",vehicle[0])
           print("  Vehicle name         : ",vehicle[1])
-          print("  Number of Passangers : ",vehicle[2])
-          print("  AC Avalibility       : ",vehicle[3])
+          print("  Number of Passengers : ",vehicle[2])
+          print("  AC Availability       : ",vehicle[3])
           print("  Size                 : ",vehicle[4])
           print("------------------------------------")
           print()
@@ -63,7 +63,7 @@ class Avalible:
 
     if whichOne.lower() == "c":
       data = checkVehicalAvalibale(self, "car")
-      print("\nAVALIBLE VEHICALE LIST :-")
+      # print("\nAVALIBLE VEHICALE LIST :-")
       print()      
       look = str(input("Are you look more vehicle?  (y/ n) : ")) 
       if look.lower() == "y":
@@ -76,7 +76,7 @@ class Avalible:
 
     if whichOne.lower() == "v":
       data = checkVehicalAvalibale(self, "van")
-      print("\nAVALIBLE VEHICALE LIST :-")
+      # print("\nAVALIBLE VEHICALE LIST :-")
       print()      
       look = str(input("Are you look more vehicle?  (y/ n) : ")) 
       if look.lower() == "y":

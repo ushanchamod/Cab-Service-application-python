@@ -33,7 +33,7 @@ class Release:
         print("  Vehicle Number       : ",vehicle[0])
         print("  Vehicle name         : ",vehicle[1])
         print("  Number of Passengers : ",vehicle[2])
-        print("  AC Availability       : ",vehicle[3])
+        print("  AC Availability      : ",vehicle[3])
         print("  Size                 : ",vehicle[4])
         print("------------------------------------")
         print()

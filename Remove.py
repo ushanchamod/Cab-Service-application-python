@@ -33,16 +33,16 @@ class Remove:
 
       if len(data) == 0:
         clear()
-        print("You Serch vehicle not in the data base. check vehicle number...!")
+        print("You Search vehicle not in the data base. check vehicle number...!")
         print()
         self.removeVehical()
       else:
         print("Vehicle Number       : ",data[0][0])
         print("Vehicle name         : ",data[0][1])
-        print("Number of Passangers : ",data[0][2])
-        print("AC Avalibility       : ",data[0][3])
+        print("Number of Passengers : ",data[0][2])
+        print("AC Availability      : ",data[0][3])
         print("Size                 : ",data[0][4])
-        print("Asign Job            : ",data[0][5])
+        print("Assign Job           : ",data[0][5])
         
         if data[0][5] == 0:
           confirmRemove = str(input("\nAre you Sure REMOVE Vehicle From System? (y / n) : "))
@@ -51,9 +51,8 @@ class Remove:
             try:
               sql = "DELETE FROM `vehicle` WHERE `id` = %s"
               val = (selectNumber,)
-              conn.cursor.execute(sql, val)
+              a = conn.cursor.execute(sql, val)
               conn.mydb.commit()
-
               print("Remove vehicle successfully...!")
               print()
 

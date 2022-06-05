@@ -33,257 +33,227 @@ class Asign:
     Exit ------------> (x)
 
     """)
-    whichOne = str(input("What vehicle are you looking for? : "))
+    whichOne = str(input("What vehicle are you looking for? : ")).lower()
 
-    def checkVehicalAvalibale():
-      return True
+    def getQueryValue(vehicleType):
+      if whichOne in ['c', 'v', 'w', 't', 'l']:
 
-    if whichOne.lower() == "c":
-      try:
-        sql = "SELECT `id`, `type`, `number_of_passengers`, `ac`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
-        val = (0, 'car')
-        conn.cursor.execute(sql, val)
-        data = conn.cursor.fetchall()
-        conn.mydb.commit()
-        
-        print("\nAVALIBLE VEHICALE LIST :-")
-        print()
-        
-        for vehicle in data:
-          print("  Vehicle Number       : ",vehicle[0])
-          print("  Vehicle name         : ",vehicle[1])
-          print("  Number of Passangers : ",vehicle[2])
-          print("  AC Avalibility       : ",vehicle[3])
-          print("------------------------------------")
-          print()
-        
-        select = input("Which Vehicle You Want (Wnter Vehicle ID) : ")
-        try:
-          sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
-          val = (select,)
-          conn.cursor.execute(sql, val)
-          data = conn.cursor.fetchall()
-          conn.mydb.commit()
+        if vehicleType == "c":
 
-          if len(select) != 0: 
-            print("Vehicle Successfully Asign to Job..!")
-
-          AsignAgain = input("Are you asign more vehicle from job ? (y/ n) : ")
-          print()
-          if AsignAgain.lower() == "y":
+          howManyPassengers = int(input("Maximum number of passengers(3 or 4) : "))
+          acAvailability = input("Should the vehicle have AC?(y or n) : ").lower()
+          
+          if (howManyPassengers == 3 or howManyPassengers == 4):
+            if acAvailability == 'y':
+              val = (0, 'car', howManyPassengers, 1)
+            else:
+              val = (0, 'car', howManyPassengers, 0)
+          else:
             clear()
+            print("Number of passengers wrong...!")
+            self.asignVehical()
+          
+          return val
+            
+          
+        elif vehicleType == "v":
+          howManyPassengers = int(input("Maximum number of passengers(6 or 8) : "))
+          acAvailability = input("Should the vehicle have AC?(y or n) : ").lower()
+          
+          if (howManyPassengers == 6 or howManyPassengers == 8):
+            if acAvailability == 'y':
+              val = (0, 'van', howManyPassengers, 1)
+            else:
+              val = (0, 'van', howManyPassengers, 0)
+          else:
+            clear()
+            print("Number of passengers wrong...!")
             self.asignVehical()
 
+          return val
+
+
+        elif vehicleType == "w":
+          val = (0, '3weel')
+
+        elif vehicleType == "t":
+          size = str(input("Size(7 or 12 ft) : "))
+          
+          if (size == '7' or size == '12'):
+            if size == '7':
+              val = (0, 'truck', 7)
+            elif size == '12':
+              val = (0, 'truck', 12)
           else:
-            pass
-
-        except:
-          print("SQL Query Erorr...!")
-
-      except:
-        clear()
-        print("Query Erorr..!")
-        self.asignVehical()
-
-    # ------------------------------------------------------------------  
-
-    elif whichOne.lower() == "v":
-      try:
-        sql = "SELECT `id`, `type`, `number_of_passengers`, `ac`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
-        val = (0, 'van')
-        conn.cursor.execute(sql, val)
-        data = conn.cursor.fetchall()
-        conn.mydb.commit()
-        
-        print("\nAVALIBLE VEHICALE LIST :-")
-        print()
-        
-        for vehicle in data:
-          print("  Vehicle Number       : ",vehicle[0])
-          print("  Vehicle name         : ",vehicle[1])
-          print("  Number of Passangers : ",vehicle[2])
-          print("  AC Avalibility       : ",vehicle[3])
-          print("------------------------------------")
-          print()
-        
-        select = input("Which Vehicle You Want (Wnter Vehicle ID) : ")
-        try:
-          sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
-          val = (select,)
-          conn.cursor.execute(sql, val)
-          data = conn.cursor.fetchall()
-          conn.mydb.commit()
-
-          if len(select) != 0: 
-            print("Vehicle Successfully Asign to Job..!")
-
-          AsignAgain = input("Are you asign more vehicle from job ? (y/ n) : ")
-          print()
-          if AsignAgain.lower() == "y":
             clear()
+            print("Size is wrong...!")
             self.asignVehical()
+          
+          return val
 
+
+        elif vehicleType == "l":
+          size = str(input("Size(2500 or 3500 Kg) : "))
+          
+          if (size == '2500' or size == '3500'):
+            if size == '2500':
+              val = (0, 'lorry', 2500)
+            elif size == '3500':
+              val = (0, 'lorry', 3500)
           else:
-            pass
-
-        except:
-          print("SQL Query Erorr...!")
-
-      except:
-        clear()
-        print("Query Erorr..!")
-        self.asignVehical()
-
-    # ------------------------------------------------------------------  
-    
-    elif whichOne.lower() == "w":
-      try:
-        sql = "SELECT `id`, `type`, `number_of_passengers`, `ac`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
-        val = (0, '3weel')
-        conn.cursor.execute(sql, val)
-        data = conn.cursor.fetchall()
-        conn.mydb.commit()
-        
-        print("\nAVALIBLE VEHICALE LIST :-")
-        print()
-        
-        for vehicle in data:
-          print("  Vehicle Number       : ",vehicle[0])
-          print("  Vehicle name         : ",vehicle[1])
-          print("  Number of Passangers : ",vehicle[2])
-          print("------------------------------------")
-          print()
-        
-        select = input("Which Vehicle You Want (Wnter Vehicle ID) : ")
-        try:
-          sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
-          val = (select,)
-          conn.cursor.execute(sql, val)
-          data = conn.cursor.fetchall()
-          conn.mydb.commit()
-
-          if len(select) != 0: 
-            print("Vehicle Successfully Asign to Job..!")
-          AsignAgain = input("Are you asign more vehicle from job ? (y/ n) : ")
-          print()
-          if AsignAgain.lower() == "y":
             clear()
+            print("Size is wrong...!")
             self.asignVehical()
+          
+          return val
 
-          else:
-            pass
-
-        except:
-          print("SQL Query Erorr...!")
-
-      except:
+      else:
         clear()
-        print("Query Erorr..!")
+        print("Invalid Input Letter...!")
         self.asignVehical()
 
-    # ------------------------------------------------------------------  
-    
-    elif whichOne.lower() == "t":
-      try:
-        sql = "SELECT `id`, `type`,`size`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
-        val = (0, 'truck')
-        conn.cursor.execute(sql, val)
-        data = conn.cursor.fetchall()
-        conn.mydb.commit()
-        
-        print("\nAVALIBLE VEHICALE LIST :-")
-        print()
-        
-        for vehicle in data:
-          print("  Vehicle Number       : ",vehicle[0])
-          print("  Vehicle name         : ",vehicle[1])
-          print("  Size                 : ",vehicle[2], "ft")
-          print("------------------------------------")
-          print()
-        
-        select = input("Which Vehicle You Want (Wnter Vehicle ID) : ")
-        try:
-          sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
-          val = (select,)
-          conn.cursor.execute(sql, val)
-          data = conn.cursor.fetchall()
-          conn.mydb.commit()
-
-          if len(select) != 0: 
-            print("Vehicle Successfully Asign to Job..!")
-          AsignAgain = input("Are you asign more vehicle from job ? (y/ n) : ")
-          print()
-          if AsignAgain.lower() == "y":
-            clear()
-            self.asignVehical()
-
-          else:
-            pass
-
-        except:
-          print("SQL Query Erorr...!")
-
-      except:
-        clear()
-        print("Query Erorr..!")
-        self.asignVehical()
-
-    # ------------------------------------------------------------------  
-    
-    elif whichOne.lower() == "l":
-      try:
-        sql = "SELECT `id`, `type`,`size`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
-        val = (0, 'lorry')
-        conn.cursor.execute(sql, val)
-        data = conn.cursor.fetchall()
-        conn.mydb.commit()
-        
-        print("\nAVALIBLE VEHICALE LIST :-")
-        print()
-        
-        for vehicle in data:
-          print("  Vehicle Number       : ",vehicle[0])
-          print("  Vehicle name         : ",vehicle[1])
-          print("  Size                 : ",vehicle[2], "kg")
-          print("------------------------------------")
-          print()
-        
-        select = input("Which Vehicle You Want (Wnter Vehicle ID) : ")
-        try:
-          sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
-          val = (select,)
-          conn.cursor.execute(sql, val)
-          data = conn.cursor.fetchall()
-          conn.mydb.commit()
-
-          if len(select) != 0: 
-            print("Vehicle Successfully Asign to Job..!")
-          AsignAgain = input("Are you asign more vehicle from job ? (y/ n) : ")
-          print()
-          if AsignAgain.lower() == "y":
-            clear()
-            self.asignVehical()
-
-          else:
-            pass
-
-        except:
-          print("SQL Query Erorr...!")
-
-      except:
-        clear()
-        print("Query Erorr..!")
-        self.asignVehical()
-
-    # ------------------------------------------------------------------ 
-    
-    elif whichOne.lower() == "x":
+    if whichOne == "x":
       pass
 
     else:
-      clear()
-      print("Wrong Input...!")
-      self.asignVehical()
+      # For Car and Van
+      if whichOne == 'c' or whichOne == 'v':
+        val = getQueryValue(whichOne)
+        sql = "SELECT `id`, `type`, `number_of_passengers`, `ac` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s AND `number_of_passengers` = %s AND `ac` = %s"
+        conn.cursor.execute(sql, val)
+        data = conn.cursor.fetchall()
+        conn.mydb.commit()
 
-    
+        if len(data) >= 1:
 
+          print("------------------------------------")
+          print("  Vehicle Number       : ",data[0][0])
+          print("  Vehicle name         : ",data[0][1])
+          print("  Number of Passengers : ",data[0][2])
+          print("  AC Availability      : ",data[0][3])
+          print("------------------------------------")
+          print()
+          
+          vehicleID = data[0][0]
+
+          needUpdate = str(input("Do you need assign to job(y or n) : ")).lower()
+
+          if needUpdate == 'y':
+            try:
+              sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
+              val = (vehicleID,)
+              conn.cursor.execute(sql, val)
+              data = conn.cursor.fetchall()
+              conn.mydb.commit()
+
+              clear()
+              print("Vehicle assign to job successfully...")
+              self.asignVehical()
+
+            except:
+              clear()
+              print("Query Failed...!")
+              self.asignVehical()
+          
+          else:
+            clear()
+            self.asignVehical()
+
+        else:
+          clear()
+          print("Not avalible vehicle to assign...!")
+          self.asignVehical()
+
+      # For weel
+      elif whichOne == 'w':
+        val = getQueryValue(whichOne)
+        sql = "SELECT `id`, `type`, `number_of_passengers` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s"
+        conn.cursor.execute(sql, val)
+        data = conn.cursor.fetchall()
+        conn.mydb.commit()
+
+        if len(data) >= 1:
+
+          print("------------------------------------")
+          print("  Vehicle Number       : ",data[0][0])
+          print("  Vehicle name         : ",data[0][1])
+          print("------------------------------------")
+          print()
+
+          vehicleID = data[0][0]
+
+          needUpdate = str(input("Do you need assign to job(y or n) : ")).lower()
+
+          if needUpdate == 'y':
+            try:
+              sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
+              val = (vehicleID,)
+              conn.cursor.execute(sql, val)
+              data = conn.cursor.fetchall()
+              conn.mydb.commit()
+
+              clear()
+              print("Vehicle assign to job successfully...")
+              self.asignVehical()
+
+            except:
+              clear()
+              print("Query Failed...!")
+              self.asignVehical()
+
+          else:
+            clear()
+            self.asignVehical()
+
+
+        else:
+          clear()
+          print("Not avalible vehicle to assign...!")
+          self.asignVehical()
+      
+      # Lorry or Trucks
+      elif whichOne == 'l' or whichOne == 't':
+        val = getQueryValue(whichOne)
+        sql = "SELECT `id`, `type`,`size`, `in_job` FROM `vehicle` WHERE `in_job` = %s AND `type` = %s AND `size` = %s"
+        conn.cursor.execute(sql, val)
+        data = conn.cursor.fetchall()
+        conn.mydb.commit()
+
+        if len(data) >= 1:
+
+          print("------------------------------------")
+          print("  Vehicle Number       : ",data[0][0])
+          print("  Vehicle name         : ",data[0][1])
+          print("  size                 : ",data[0][2])
+          print("------------------------------------")
+          print()
+          
+          vehicleID = data[0][0]
+
+          needUpdate = str(input("Do you need assign to job(y or n) : ")).lower()
+
+          if needUpdate == 'y':
+            try:
+              sql = "UPDATE `vehicle` SET `in_job`= 1 WHERE `id` = %s"
+              val = (vehicleID,)
+              conn.cursor.execute(sql, val)
+              data = conn.cursor.fetchall()
+              conn.mydb.commit()
+
+              clear()
+              print("Vehicle assign to job successfully...")
+              self.asignVehical()
+
+            except:
+              clear()
+              print("Query Failed...!")
+              self.asignVehical()
+          
+          else:
+            clear()
+            self.asignVehical()
+
+        else:
+          clear()
+          print("Not avalible vehicle to assign...!")
+          self.asignVehical()
