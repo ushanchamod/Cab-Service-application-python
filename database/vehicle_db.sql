@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 11:45 AM
+-- Generation Time: Jun 07, 2022 at 08:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -48,13 +48,14 @@ INSERT INTO `vehicle` (`id`, `type`, `number_of_passengers`, `ac`, `size`, `in_j
 (5, 'van', 6, 1, NULL, 0),
 (6, 'van', 8, 0, NULL, 0),
 (7, 'van', 8, 1, NULL, 0),
-(8, '3weel', 3, 0, NULL, 0),
+(8, '3weel', 3, 0, NULL, 1),
 (9, '3weel', 3, 0, NULL, 0),
 (10, '3weel', 3, 0, NULL, 0),
-(11, 'truck', NULL, NULL, 7, 0),
+(11, 'truck', NULL, NULL, 7, 1),
 (12, 'truck', NULL, NULL, 12, 0),
 (13, 'truck', NULL, NULL, 7, 0),
-(14, 'truck', NULL, NULL, 2500, 0);
+(14, 'lorry', NULL, NULL, 3500, 1),
+(15, 'car', 3, 1, NULL, 0);
 
 --
 -- Indexes for dumped tables
