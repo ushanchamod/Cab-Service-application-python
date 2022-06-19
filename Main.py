@@ -67,7 +67,7 @@ class Main():
         asign.asignVehical()
         self.Home()
       
-      # If select j
+      # If select w
       elif selectCatagory.lower() == "w":
         clear()
         release.releaseVehical()
