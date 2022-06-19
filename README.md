@@ -1,6 +1,6 @@
 # Cab-Service-Application
 
-## First install PyMySQL
+## install PyMySQL
 ```
 pip install PyMySQL
 ```
